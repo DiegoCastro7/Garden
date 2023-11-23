@@ -9,6 +9,8 @@ namespace Domain.Interfaces
 { 
     public interface ICliente:IGeneric<Cliente> 
     {
-
+        Task<IEnumerable<object>> NoPay();
+        Task<IEnumerable<object>> InfoClient();
+        Task<IEnumerable<object>> PedidosClient();
     }
 } 

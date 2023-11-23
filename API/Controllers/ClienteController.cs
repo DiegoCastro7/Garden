@@ -29,18 +29,26 @@ public class ClienteController: BaseController
             return _mapper.Map<List<Cliente>>(entidades);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Consulting")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ClienteDto>> Get(int id)
-        {
-            var entidad = await _unitOfWork.Clientes.GetByIdAsync(id);
-            if(entidad == null)
+        public async Task<ActionResult<IEnumerable<Cliente>>> Get(int Consulta)
+        {   
+            switch (Consulta)
             {
-                return NotFound();
+                case 1:
+                    var Qcliente = await _unitOfWork.Clientes.NoPay();
+                    return Ok(Qcliente);
+                case 2:
+                    var Qcliente2 = await _unitOfWork.Clientes.PedidosClient();
+                    return Ok(Qcliente2);
+                case 3:
+                    var Qcliente3 = await _unitOfWork.Clientes.InfoClient();
+                    return Ok(Qcliente3);
+                default:
+                    return BadRequest("Consulta no válida");
             }
-            return _mapper.Map<ClienteDto>(entidad);
         }
 
         [HttpPost]

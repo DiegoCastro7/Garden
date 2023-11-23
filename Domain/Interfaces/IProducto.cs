@@ -9,6 +9,7 @@ namespace Domain.Interfaces
 { 
     public interface IProducto:IGenericString<Producto> 
     {
-
+        Task<IEnumerable<object>> MoreSell();
+        Task<IEnumerable<object>> FirstMoreSell();
     }
 } 

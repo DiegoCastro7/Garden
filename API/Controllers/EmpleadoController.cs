@@ -29,18 +29,20 @@ public class EmpleadoController: BaseController
             return _mapper.Map<List<Empleado>>(entidades);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Consulting")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<EmpleadoDto>> Get(int id)
-        {
-            var entidad = await _unitOfWork.Empleados.GetByIdAsync(id);
-            if(entidad == null)
+        public async Task<ActionResult<IEnumerable<Cliente>>> Get(int Consulta)
+        {   
+            switch (Consulta)
             {
-                return NotFound();
+                case 2:
+                    var Qemployee2 = await _unitOfWork.Empleados.NotClients();
+                    return Ok(Qemployee2);
+                default:
+                    return BadRequest("Consulta no válida");
             }
-            return _mapper.Map<EmpleadoDto>(entidad);
         }
 
         [HttpPost]

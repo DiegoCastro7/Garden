@@ -29,18 +29,23 @@ public class ProductoController: BaseController
             return _mapper.Map<List<Producto>>(entidades);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Consulting")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ProductoDto>> Get(string id)
-        {
-            var entidad = await _unitOfWork.Productos.GetByIdAsync(id);
-            if(entidad == null)
+        public async Task<ActionResult<IEnumerable<Cliente>>> Get(int Consulta)
+        {   
+            switch (Consulta)
             {
-                return NotFound();
+                case 1:
+                    var Qproduct = await _unitOfWork.Productos.MoreSell();
+                    return Ok(Qproduct);
+                case 3:
+                    var Qproduct3 = await _unitOfWork.Productos.FirstMoreSell();
+                    return Ok(Qproduct3);
+                default:
+                    return BadRequest("Consulta no válida");
             }
-            return _mapper.Map<ProductoDto>(entidad);
         }
 
         [HttpPost]

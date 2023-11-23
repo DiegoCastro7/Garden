@@ -12,7 +12,7 @@ namespace Persistence.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<DetallePedido> builder)
         {
-            builder.HasKey(e => new { e.CodigoPedido, e.CodigoProducto })
+            builder.HasKey(e => new { e.Id, e.CodigoProducto })
                 .HasName("PRIMARY")
                 .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
 
@@ -20,7 +20,7 @@ namespace Persistence.Data.Configuration
 
             builder.HasIndex(e => e.CodigoProducto, "codigo_producto");
 
-            builder.Property(e => e.CodigoPedido).HasColumnName("codigo_pedido");
+            builder.Property(e => e.Id).HasColumnName("codigo_pedido");
             builder.Property(e => e.CodigoProducto)
                 .HasMaxLength(15)
                 .HasColumnName("codigo_producto");
@@ -31,7 +31,7 @@ namespace Persistence.Data.Configuration
                 .HasColumnName("precio_unidad");
 
             builder.HasOne(d => d.CodigoPedidoNavigation).WithMany(p => p.DetallePedidos)
-                .HasForeignKey(d => d.CodigoPedido)
+                .HasForeignKey(d => d.Id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("detalle_pedido_ibfk_1");
 

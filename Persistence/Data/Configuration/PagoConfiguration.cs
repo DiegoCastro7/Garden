@@ -12,13 +12,13 @@ namespace Persistence.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Pago> builder)
         {
-            builder.HasKey(e => new { e.CodigoCliente, e.IdTransaccion })
+            builder.HasKey(e => new { e.Id, e.IdTransaccion })
                 .HasName("PRIMARY")
                 .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
 
             builder.ToTable("pago");
 
-            builder.Property(e => e.CodigoCliente).HasColumnName("codigo_cliente");
+            builder.Property(e => e.Id).HasColumnName("codigo_cliente");
             builder.Property(e => e.IdTransaccion)
                 .HasMaxLength(50)
                 .HasColumnName("id_transaccion");
@@ -32,7 +32,7 @@ namespace Persistence.Data.Configuration
                 .HasColumnName("total");
 
             builder.HasOne(d => d.CodigoClienteNavigation).WithMany(p => p.Pagos)
-                .HasForeignKey(d => d.CodigoCliente)
+                .HasForeignKey(d => d.Id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("pago_ibfk_1");
         }

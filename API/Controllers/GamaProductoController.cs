@@ -33,7 +33,7 @@ public class GamaProductoController: BaseController
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<GamaProductoDto>> Get(int id)
+        public async Task<ActionResult<GamaProductoDto>> Get(string id)
         {
             var entidad = await _unitOfWork.GamaProductos.GetByIdAsync(id);
             if(entidad == null)
@@ -78,7 +78,7 @@ public class GamaProductoController: BaseController
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             var entidad = await _unitOfWork.GamaProductos.GetByIdAsync(id);
             if(entidad == null)

@@ -7,7 +7,7 @@ using Domain.Entities;
 
 namespace Domain.Interfaces
 { 
-    public interface IGamaProducto:IGeneric<GamaProducto> 
+    public interface IGamaProducto:IGenericString<GamaProducto> 
     {
 
     }

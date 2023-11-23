@@ -2,7 +2,7 @@
 
 Consultas:
 
-Endpoints:
+Endpoints Usando el metodo Get(Consulting):
 
 http://localhost:5231/{Entidad}/Consulting?Consulta={Numero de consulta en la entidad}
 

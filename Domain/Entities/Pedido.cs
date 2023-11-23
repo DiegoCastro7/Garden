@@ -5,8 +5,6 @@ namespace Domain.Entities;
 
 public partial class Pedido : BaseEntity
 {
-    public int CodigoPedido { get; set; }
-
     public DateOnly FechaPedido { get; set; }
 
     public DateOnly FechaEsperada { get; set; }

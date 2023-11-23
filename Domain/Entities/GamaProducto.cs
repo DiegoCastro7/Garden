@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class GamaProducto : BaseEntity
+public partial class GamaProducto : BaseEntityString
 {
     public string Gama { get; set; }
 

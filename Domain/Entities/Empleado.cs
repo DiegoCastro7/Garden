@@ -5,8 +5,6 @@ namespace Domain.Entities;
 
 public partial class Empleado : BaseEntity
 {
-    public int CodigoEmpleado { get; set; }
-
     public string Nombre { get; set; }
 
     public string Apellido1 { get; set; }

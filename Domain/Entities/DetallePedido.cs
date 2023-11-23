@@ -5,8 +5,6 @@ namespace Domain.Entities;
 
 public partial class DetallePedido : BaseEntity
 {
-    public int CodigoPedido { get; set; }
-
     public string CodigoProducto { get; set; }
 
     public int Cantidad { get; set; }

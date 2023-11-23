@@ -5,8 +5,6 @@ namespace Domain.Entities;
 
 public partial class Pago : BaseEntity
 {
-    public int CodigoCliente { get; set; }
-
     public string FormaPago { get; set; }
 
     public string IdTransaccion { get; set; }
